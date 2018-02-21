@@ -33,6 +33,14 @@ jsonApi.setConfig({
   bodyParserJsonOpts: {
     limit: '256kb'
   },
+  // (optional) onServerCreated allow to run specific operations on created server instance,
+  // e.g: attaching socket.io
+  coreServerOpts: {
+    onServerCreated: function(server){
+      const io = require('socket.io')({})
+      io.attach(server)
+    }
+  }
   // (optional) queryStringParsingParameterLimit allows to
   // override the default limit of 1000 parameters in query string parsing,
   // documented at : https://github.com/ljharb/qs
